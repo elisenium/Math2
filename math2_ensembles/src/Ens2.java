@@ -71,7 +71,6 @@ public class Ens2 extends EnsembleAbstrait {
 	}
 
 	public void complementer() {
-		//TODO;
 		if (this.estVide()) {
 			cardinal = Elt.MAXELT.val();
 			for (int i = 0; i < Elt.MAXELT.val(); i++) {
