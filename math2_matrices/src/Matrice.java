@@ -207,7 +207,7 @@
         Matrice d = new Matrice(nbLignes, 1);
 
         for (int i = 0; i < nbLignes; i++) {
-            d.data[i][0] = 1.0/nbLignes;
+            d.data[i][0] = 1.0 / nbLignes;
         }
         for (int i = 0; i < nbIterations; i++) {
             d = google.produitAGauche(d);
