@@ -227,33 +227,21 @@
      }
 
      public Matrice matriceDeTransition() {
-         // Somme des valeurs par colonne
-         double[] sommeColonne = new double[nbLignes];
-         for (int i = 0; i < nbLignes; i++) {
-             for (int j = 0; j < nbColonnes; j++) {
-                 sommeColonne[i] += data[j][i];
+         Matrice transition = new Matrice(nbLignes, nbColonnes);
+         double aleatoire = 1.0 / nbLignes;
+
+         for (int j = 0; j < nbColonnes; j++) {
+             double nbLiens = 0;
+             for (int i = 0; i < nbLignes; i++) {
+                 nbLiens += data[i][j];
              }
-         }
-         // Nombre de 1 par colonne
-         int[] nb1Colonne = new int[nbColonnes];
-         for (int i = 0; i < nbColonnes; i++) {
-             for (int j = 0; j < nbLignes; j++) {
-                 if (data[j][i] == 1) {
-                     nb1Colonne[i]++;
-                 }
-             }
-         }
-         Matrice transition = new Matrice(nbColonnes, nbColonnes);
-         for (int i = 0; i < nbLignes; i++) {
-             if (sommeColonne[i] == 0) {
-                 for (int j = 0; j < nbColonnes; j++) {
-                     transition.data[j][i] = (1.0 / nbColonnes);
+             if (nbLiens == 0) {
+                 for (int i = 0; i < nbLignes; i++) {
+                     transition.data[i][j] = aleatoire;
                  }
              } else {
-                 for (int j = 0; j < nbColonnes; j++) {
-                     if (data[j][i] == 1) {
-                         transition.data[j][i] = (1.0 / nb1Colonne[i]);
-                     }
+                 for (int i = 0; i < nbLignes; i++) {
+                     transition.data[i][j] = data[i][j] / nbLiens;
                  }
              }
          }
